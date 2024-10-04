@@ -1,0 +1,248 @@
+.body {
+  min-width: 500px;
+  min-height: 856px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-container {
+  background-size: cover;
+  background-position: center;
+  min-height: 100%;
+}
+
+.video {
+  position: absolute;
+  z-index: 20;
+  width: auto;
+  object-fit: cover;
+  transition: opacity 2s ease-in-out;
+  /* Adjust the duration as desired */
+  background-color: black;
+  /* Set the default background color to black */
+}
+
+.video.fade-in {
+  opacity: 1;
+}
+
+.video.fade-out {
+  opacity: 0;
+}
+
+.background-video.hide .video {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.background-video.show .video {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.font-dune {
+  font-family: dune, sans-serif;
+}
+
+.edit-form-label {
+  border-radius: 4px;
+  text-align: left;
+  padding: 5px 5px;
+  margin: 0px 0px;
+}
+
+.placeholder-black::placeholder {
+  color: black;
+}
+
+.placeholder-gray::placeholder {
+  color: gray;
+}
+
+.required:after {
+  vertical-align: super;
+  font-size: small;
+  content: " *";
+  color: red;
+}
+
+.invalid-feedback {
+  position: relative;
+  /* Set the position to absolute */
+  border: #282c34;
+  top: -12%;
+  /* Position the error message below the input */
+  left: 0;
+  /* Align the error message with the left edge of the input */
+  width: 100%;
+  /* Make the error message span the entire width of the input */
+  /* background-color: #fff; Set the background color to match the input background */
+  color: red;
+  /* Set the text color for the error message */
+  font-size: 10px;
+  /* Set the font size for the error message */
+  padding: 0px;
+  /* Add padding to the error message for better visibility */
+  z-index: 1;
+  /* Set a higher z-index to position the error message above other elements */
+}
+
+
+
+.border {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.file-input-label {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}
+
+.file-input {
+  position: relative;
+  opacity: 1;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.custom-file-input {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  padding: 15px 32px;
+  border-radius: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  text-decoration: none;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.custom-file-input:hover {
+    background-color: #45a049;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hover-container {
+  position: relative;
+}
+
+.hover-text {
+  opacity: 1;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  font-size: x-small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 1px 2px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  transition: opacity 0.5s ease;
+}
+
+.hover-button:hover .hover-text {
+  opacity: 1;
+}
+
+.hover-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.fade-line {
+  height: 4px;
+  background-color: #E6E6E6;
+  width:100%;
+  /* margin: 20 auto; */
+  background-image: linear-gradient(to right , white 10%, #E6E6E6 50%, white 90%);
+  background-image: -o-linear-gradient(left , white 10%, #E6E6E6 50%, white 90%);
+  background-image: -moz-linear-gradient(left , white 10%, #E6E6E6 50%, white 90%);
+  background-image: -webkit-linear-gradient(left , white 10%, #E6E6E6 50%, white 90%);
+  background-image: -ms-linear-gradient(left , white 10%, #E6E6E6 50%, white 90%);
+  background-image: -webkit-gradient( linear, left bottom, right bottom, color-stop(0.1, white), color-stop(0.5, gray), color-stop(0.90, white) );
+}
+
+.fade-line-black {
+  height: 3px;
+  background-color: #000; /* Black background color */
+  width: 100%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 10%, #000 50%, rgba(0, 0, 0, 0) 90%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 10%, #000 50%, rgba(0, 0, 0, 0) 90%);
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 10%, #000 50%, rgba(0, 0, 0, 0) 90%);
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 10%, #000 50%, rgba(0, 0, 0, 0) 90%);
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0) 10%, #000 50%, rgba(0, 0, 0, 0) 90%);
+  background-image: -webkit-gradient(linear, left bottom, right bottom, color-stop(0.1, rgba(0, 0, 0, 0)), color-stop(0.5, #000), color-stop(0.90, rgba(0, 0, 0, 0)));
+}

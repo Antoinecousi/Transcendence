@@ -1,0 +1,243 @@
+	:root {	
+  --online-color: green;	
+  --online-color-light: rgba(0, 230, 0, 0.664);	
+}
+
+.friends-main-container {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  overflow: hidden;
+
+  .friends-header {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    font-family: "dune", Arial, sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.66);
+  }
+
+  .friends-container {
+    width: 100%;
+    height: 85%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    .friends {
+      &__profiles {
+        background-color: transparent;
+        box-sizing: border-box;
+        border-radius: 0 0 12px 12px;
+        padding: 15px 15px 20px;
+        display: grid;
+        row-gap: 6px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 1;
+        align-content: flex-start;
+      }
+
+      /* Customize the scrollbar track */
+      &__profiles::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      /* Customize the scrollbar thumb (draggable part) */
+      &__profiles::-webkit-scrollbar-thumb {
+        background-color: #202020;
+        border-radius: 8px;
+        border: 2px solid #fff;
+        box-shadow: 0 0 5px rgba(53, 216, 172, 0.6);
+      }
+
+      /* Change the appearance of the scrollbar thumb when hovering */
+      &__profiles::-webkit-scrollbar-thumb:hover {
+        background-color: #000000;
+        border-color: #eaeaea;
+        box-shadow: 0 0 5px rgba(53, 216, 172, 0.9);
+      }
+
+      /* Change the appearance of the scrollbar thumb when active (being dragged) */
+      &__profiles::-webkit-scrollbar-thumb:active {
+        background-color: #818181;
+        box-shadow: 0 0 5px rgba(85, 85, 85, 0.9);
+      }
+
+      /* Customize the scrollbar track on the left side (if needed) */
+      &__profiles::-webkit-scrollbar-track {
+        background-color: #ffffff;
+      }
+
+      /* Customize the scrollbar track on the right side (if needed) */
+      &__profiles::-webkit-scrollbar-track-piece:end {
+        background-color: #ffffff;
+      }
+
+      /* Customize the scrollbar thumb on the top side (if needed) */
+      &__profiles::-webkit-scrollbar-thumb:horizontal {
+        background-color: #000000;
+        border-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Customize the scrollbar thumb on the bottom side (if needed) */
+      &__profiles::-webkit-scrollbar-thumb:horizontal:hover {
+        background-color: #000000;
+        border-color: #eaeaea;
+        box-shadow: 0 0 5px rgba(53, 216, 172, 0.9);
+      }
+
+      /* Customize the scrollbar thumb on the bottom side when active (if needed) */
+      &__profiles::-webkit-scrollbar-thumb:horizontal:active {
+        background-color: #000000;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+      }
+
+      &__profile {
+        display: grid;
+        grid-template-columns: 1fr 3fr 0.95fr 0.95fr;
+        align-items: center;
+        padding: 10px 0px 10px 10px;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 5px 7px -1px rgba(51, 51, 51, 0.23);
+        cursor: pointer;
+        transition: transform .25s cubic-bezier(.7, .98, .86, .98), box-shadow .25s cubic-bezier(.7, .98, .86, .98);
+        background-color: transparent;
+        height: 70px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+        }
+      }
+
+      &__picture {
+        max-width: 100%;
+        min-width: 100%;
+        height: 55px;
+        min-height: 55px;
+        min-width: 55px;
+        width: 55px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        object-fit: cover;
+        background-color: rgba(255, 255, 255, 0.5)	
+      }
+
+      &__picture.online {	
+        box-shadow: 0 0 0 5px var(--online-color);	
+        animation: pulsateShadow 1.5s infinite;	
+      }	
+
+      @keyframes pulsateShadow {	
+        0% {	
+          box-shadow: 0 0 0 6px var(--online-color);	
+        }	
+        50% {	
+          box-shadow: 0 0 0 10px var(--online-color-light);	
+        }	
+        100% {	
+          box-shadow: 0 0 0 6px var(--online-color);	
+        }
+      }
+
+      &__picture.online {
+        box-shadow: 0 0 0 5px var(--online-color);
+        animation: pulsateShadow 1.5s infinite;
+      }
+
+      &__name {
+        box-sizing: border-box;	
+        height: 110%;
+        text-align: left;
+        color: #979cb0;
+        font-weight: 550;
+        font-size: 15px;
+        letter-spacing: 0.6px;
+        min-width: 120px;	
+        max-width: 120px;	
+        margin-left: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+	      &__isplaying {	
+          width:      40px;	
+          min-width:  40px;	
+          height:     40px;	
+          min-height: 40px;	
+          display: flex;	
+          justify-content: flex-end;	
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.5);
+        }	
+
+      &__heart {
+        display: flex;
+        margin-right: 10px;
+      }	
+      &__heart.friend {	
+        color: red;	
+        animation: pulsate 1.5s infinite;	
+      }	
+      &__heart.notfriend {	
+        color: rgba(255, 255, 255, 0.7);	
+      }
+
+      &__status-circle {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 15px;
+
+
+      }
+
+      &__status-circle.online {
+        position: relative;
+        background-color: rgb(62, 219, 22);
+        animation: pulsate 1.5s infinite;
+      }
+
+      &__status-circle.offline {
+        background-color: rgb(255, 46, 46);
+      }
+    }
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes ripple {	
+  0% {	
+    transform: scale(0);	
+    opacity: 0.4;	
+  }	
+  100% {	
+    transform: scale(2);	
+    opacity: 0;	
+  }	
+}

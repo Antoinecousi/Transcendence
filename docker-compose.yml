@@ -1,0 +1,56 @@
+services:
+  frontend:
+    container_name: frontend
+    env_file:
+      - ./.env
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile
+    networks:
+      - app
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    container_name: backend
+    env_file:
+      - ./.env
+    build:
+      context: ./back
+      dockerfile: ./Dockerfile
+    networks:
+      - app
+    depends_on:
+      - bdd
+    restart: always
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app
+    restart: always
+
+  bdd:
+    container_name: bdd
+    env_file:
+      - ./.env
+    image: postgres:latest
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - app
+    restart: always
+
+volumes:
+  data:
+
+networks:
+  app:

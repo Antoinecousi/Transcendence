@@ -1,0 +1,1457 @@
+$border: 1px solid rgba(255, 255, 255, 0.5);
+$background: rgba(255, 255, 255, 0);
+$hover-color: rgba(255, 255, 255, 0.5);
+$font-color: rgba(255, 255, 255, 0.7);
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  padding: 10px 10px;
+  background: $background;
+  border-radius: 20px;
+
+  .metadata-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    height: 90px;
+    width: 100%;
+
+    z-index: 2;
+
+    .more {
+      display: flex;
+      height: 90px;
+      width: 50px;
+
+      .more-symbol-container {
+        margin-top: 15px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        height: 80%;
+        width: 100%;
+        cursor: pointer;
+        z-index: 1;
+        justify-content: center;
+        align-items: center;
+
+        .more-symbol {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          padding: 0;
+
+          li {
+            height: 4px;
+            width: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            transition: transform 250ms ease-in-out;
+            margin-top: 6px;
+          }
+
+          &.active li:nth-child(1) {
+            width: 40px;
+            transform: rotate(45deg);
+            position: relative;
+            left: -5px;
+            top: 10px;
+          }
+
+          &.active li:nth-child(2) {
+            height: 0;
+            width: 0;
+            opacity: 0; // Start with opacity 0
+            transform: scale(0); // Start with a scaled-down size
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out; // Transition both transform and opacity
+          }
+
+          &.active li:nth-child(3) {
+            width: 40px;
+            transform: rotate(-45deg);
+            position: relative;
+            left: -5px;
+          }
+        }
+      }
+
+      .more-popup {
+        position: relative; // Set relative positioning
+        top: 110%; // Adjust as needed
+        left: -100%; // Adjust as needed
+        height: 200px; // Set the desired height
+        width: 120px; // Set the desired width
+        border-radius: 5px;
+        // border: $border;
+        cursor: auto;
+        background: rgba(0, 0, 0, 0.8); // Transparent background
+        z-index: 3;
+
+        transition: opacity 0.3s ease, transform 0.3s ease, height 0.3s ease; // Add transitions
+
+        .contents {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          align-content: center;
+          width: 100%;
+          height: 100%;
+
+          p {
+            padding: 10px;
+            justify-content: center;
+            text-align: center;
+            font-family: "dune", Arial, sans-serif;
+            color: rgba(255, 255, 255, 1);
+            border: $border;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 0;
+
+            cursor: pointer;
+            transition: transform 0.3s;
+
+            &:hover {
+              transform: scale(1.05);
+            }
+          }
+        }
+
+
+        .password-popup {
+          position: absolute;
+          top: 100%;
+          left: 0%;
+
+          background: rgba(0, 0, 0, 0.8); // Transparent background
+          width: 120px;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+
+          border: $border;
+          border-radius: 5px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          padding: 2px;
+
+          .infos {
+            h3 {
+              font-family: "dune", Arial, sans-serif;
+              color: white;
+              font-size: 10pt;
+              padding: 10px;
+              max-width: 120px;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+
+            input {
+              width: 110px;
+              margin-bottom: 10px;
+              padding: 8px;
+              color: white;
+
+              font-size: 10px;
+
+              background: transparent;
+              border: $border;
+              border-radius: 5px;
+            }
+          }
+
+          .buttons {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            button {
+              font-family: "dune", Arial, sans-serif;
+              color: white;
+              font-size: 8pt;
+              width: 80%;
+              padding: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+              border: 1px solid rgb(255, 255, 255, 0.3);
+            }
+
+            .cancel {
+              background-color: rgba(255, 0, 0, 0.2);
+
+              &:hover {
+                background-color: rgba(255, 0, 0, 0.5);
+              }
+            }
+
+            .validate {
+              background-color: rgba(0, 255, 0, 0.2);
+              
+              &:hover {
+                background-color: rgba(0, 255, 0, 0.5);
+              }
+            }
+          }
+        }
+
+        .channel-creation-popup {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          background: rgba(0, 0, 0, 0.8); // Transparent background
+
+          position: relative;
+          top: -99%;
+          left: 102%;
+
+          border-radius: 5px;
+          border: $border;
+
+          height: 280px;
+          width: 200px;
+
+          .icons {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+
+            border-radius: 5px;
+
+            .selected-text {
+              height: 80px;
+              padding: 10px;
+              width: 100%;
+              justify-content: center;
+
+              .type {
+                justify-content: center;
+                display: flex;
+                font-size: 9px;
+                margin: 5px;
+                font-family: "dune", Arial, sans-serif;
+                color: rgba(255, 255, 255, 1);
+              }
+
+              .description {
+                text-align: center;
+                font-family: "dune", Arial, sans-serif;
+                color: rgba(255, 255, 255, 1);
+                font-size: 12px;
+                word-wrap: break-word;
+                margin: 0px;
+              }
+            }
+
+            .images {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+              align-items: center;
+              padding: 5px;
+
+              img {
+                filter: invert(100%);
+                height: 30px;
+                width: 30px;
+                padding: 2px;
+                margin: 1px 1px 1px 1px;
+
+                border-bottom: $border;
+                border-radius: 2px;
+
+                cursor: pointer;
+                transition: transform 0.3s;
+
+                &.selected {
+                  background-color: #d887ee9f;
+                }
+
+                &:hover {
+                  transform: scale(1.2);
+                }
+              }
+            }
+          }
+
+          .channel-name {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            font-size: 10pt;
+            color: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            p {
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+
+            input {
+              height: 30px;
+              width: 90%;
+              background: transparent;
+              border: $border;
+              border-radius: 5px;
+              padding: 5px;
+            }
+          }
+
+          .password-input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            font-size: 10pt;
+            color: rgba(255, 255, 255, 1);
+
+            input {
+              height: 30px;
+              width: 90%;
+              background: transparent;
+              border: $border;
+              border-radius: 5px;
+              padding: 5px;
+            }
+          }
+
+          .validate {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+
+            p {
+              margin: 0;
+              padding: 10px;
+              height: 60px;
+              justify-content: center;
+              text-align: center;
+              font-family: "dune", Arial, sans-serif;
+              border: $border;
+              border-radius: 5px;
+              font-size: 14px;
+              color: rgba(255, 255, 255, 1);
+
+              cursor: pointer;
+              transition: transform 0.3s;
+
+              &:hover {
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+
+        .all-users-popup {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+          position: relative;
+          top: -99%;
+          left: 102%;
+
+          background: rgba(0, 0, 0, 0.8); // Transparent background
+
+          width: 200px;
+          height: 400px;
+
+          border-radius: 5px;
+          border: $border;
+
+          .filter-users {
+            padding: 10px;
+            border: none;
+            border-bottom: $border;
+            outline: none;
+            background: transparent;
+            color: white;
+          }
+
+          .users-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            overflow-x: hidden;
+            overflow-y: scroll;
+
+            // Style the scrollbar
+            scrollbar-color: transparent rgba(128, 128, 128, 0.2); // Transparent thumb, gray background
+
+            &:hover {
+              scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.2); // Show scrollbar thumb and border on hover
+            }
+
+            &::-webkit-scrollbar {
+              width: 10px; // Adjust the width as needed
+            }
+
+            &::-webkit-scrollbar-track {
+              background-color: rgba(128, 128, 128, 0.2); // Gray transparent background
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background-color: rgba(128, 128, 128, 0.3); // Transparent scrollbar thumb
+              border-radius: 5px; // Rounded corners for the thumb
+              border: 2px solid rgba(0, 0, 0, 0); // Hide the border initially
+            }
+
+            &:hover {
+              &::-webkit-scrollbar-thumb {
+                background-color: rgba(128, 128, 128, 0.6); // Show scrollbar thumb on hover
+                border-color: rgba(0, 0, 0, 0.2); // Show border on hover
+              }
+            }
+
+            .user-container {
+              border-bottom: $border;
+
+              cursor: pointer;
+
+              .user {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 5px;
+
+
+                transition: background-color;
+
+                &:hover {
+                  background-color: rgba(255, 255, 255, 0.1);
+                  transform: scale(1.03);
+                }
+
+                .profile-picture {
+                  width: 40px;
+                  height: 40px;
+                  object-fit: cover;
+                  object-position: center;
+                  margin: 5px;
+
+                  border-radius: 50%;
+                  box-shadow: 7px 10px 10px -6px rgba(0, 0, 0, 0.72);
+                }
+
+                .username {
+                  margin: 0px 0px 0px 10px;
+                  color: white;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+          }
+
+          .user-actions {
+            font-family: "dune", Arial, sans-serif;
+            font-size: 8pt;
+            justify-content: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: black;
+            border-radius: 5px;
+
+            text-align: center;
+            word-wrap: break-word;
+
+            h4 {
+              font-size: 14pt;
+              padding: 10px;
+              margin: 0px;
+              color: white;
+            }
+
+            .dm,
+            .invite-to-channel,
+            .invite-to-play,
+            .block-user,
+            .unblock-user {
+              cursor: pointer;
+              color: white;
+              border: $border;
+              border-radius: 5px;
+              padding: 10px;
+            }
+
+            .dm:hover,
+            .invite-to-play:hover,
+            .invite-to-channel:hover {
+              background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .dm {
+              border-bottom: $border;
+            }
+
+            .invite-to-chat {
+              border-bottom: $border;
+            }
+
+            .invite-to-play {
+              border-bottom: $border;
+            }
+
+            .invite-to-channel {
+              border-bottom: $border;
+            }
+
+            .block-user {
+              background-color: rgba(255, 0, 0, 0.2);
+            }
+
+            .block-user:hover {
+              background-color: rgba(255, 0, 0, 0.5);
+            }
+
+            .unblock-user {
+              background-color: rgba(0, 255, 0, 0.2);
+            }
+
+            .unblock-user:hover {
+              background-color: rgba(0, 255, 0, 0.5);
+            }
+          }
+        }
+
+        .channel-list-popup {
+          display: flex;
+          flex-direction: column;
+
+          z-index: 10;
+          position: relative;
+          top: -99%;
+          left: 102%;
+
+          width: 200px;
+          height: 320px;
+
+          overflow-x: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+
+          overflow-y: scroll;
+
+          // Style the scrollbar
+          scrollbar-color: transparent rgba(128, 128, 128, 0.2); // Transparent thumb, gray background
+
+          &:hover {
+            scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.2); // Show scrollbar thumb and border on hover
+          }
+
+          &::-webkit-scrollbar {
+            width: 10px; // Adjust the width as needed
+          }
+
+          &::-webkit-scrollbar-track {
+            background-color: rgba(128, 128, 128, 0.2); // Gray transparent background
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(128, 128, 128, 0.3); // Transparent scrollbar thumb
+            border-radius: 5px; // Rounded corners for the thumb
+            border: 2px solid rgba(0, 0, 0, 0); // Hide the border initially
+          }
+
+          &:hover {
+            &::-webkit-scrollbar-thumb {
+              background-color: rgba(128, 128, 128, 0.6); // Show scrollbar thumb on hover
+              border-color: rgba(0, 0, 0, 0.2); // Show border on hover
+            }
+          }
+
+          border-radius: 5px;
+          border: $border;
+          background: rgba(0, 0, 0, 0.8); // Transparent background
+
+          .filter-channels {
+            padding: 10px;
+            border: none;
+            border-bottom: $border;
+            outline: none;
+            background: transparent;
+            color: white;
+          }
+
+          .channel-list {
+            display: flex;
+            flex-direction: column;
+
+            .channel-container {
+              cursor: pointer;
+
+              .channel {
+                border: $border;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                transition: background-color;
+
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                &:hover {
+                  background-color: $hover-color;
+                }
+
+                .type-picture {
+                  width: 15%;
+                  min-width: 15%;
+                  height: auto;
+
+                  margin: 5px 0px 5px 5px;
+
+                  border-radius: 50%;
+                  filter: invert(100%);
+                }
+
+                .channel-info {
+
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  padding: 5px;
+
+                  p {
+                    font-family: "dune", Arial, sans-serif;
+                    color: white;
+                    line-height: 12px;
+                    font-size: 12px;
+                    padding: 5px;
+                    margin: 0;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .channel-manager {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      padding: 10px;
+      height: 90px;
+      width: 240px;
+
+      position: relative;
+
+      color: $font-color;
+      border-left: $border;
+      border-right: $border;
+
+      .channel-infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        margin-left: 5px;
+
+        height: 100%;
+        width: 88%;
+        max-width: 160px;
+
+        .channel-name {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          column-gap: 10px;
+
+          width: 80%;
+          height: 50%;
+
+          p {
+            font-family: "dune", Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .channel-users-container {
+          height: 50%;
+          width: 100%;
+          cursor: pointer;
+          font-size: 14px;
+
+          position: relative;
+
+          .channel-users-count {
+            height: 100%;
+            width: 130px;
+            border-radius: 5px;
+            font-family: "dune", Arial, sans-serif;
+
+            &:hover {
+              outline: $border;
+            }
+          }
+
+          .popup-container {
+            position: relative;
+            left: -50%;
+            top: 52%;
+            height: 320px;
+            width: 150px;
+
+            .invited {
+              background: rgba(0, 0, 0, 0.72);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              border: $border;
+              border-radius: 5px;
+
+              text-align: center;
+              text-transform: uppercase;
+              word-wrap: break-word;
+            }
+
+            .channel-users-popup {
+              background: rgba(0, 0, 0, 0.72);
+              color: white;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+
+              overflow-y: scroll;
+              // Style the scrollbar
+              scrollbar-color: transparent rgba(128, 128, 128, 0.2); // Transparent thumb, gray background
+
+              &:hover {
+                scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.2); // Show scrollbar thumb and border on hover
+              }
+
+              &::-webkit-scrollbar {
+                width: 10px; // Adjust the width as needed
+              }
+
+              &::-webkit-scrollbar-track {
+                background-color: rgba(128, 128, 128, 0.2); // Gray transparent background
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background-color: rgba(128, 128, 128, 0.3); // Transparent scrollbar thumb
+                border-radius: 5px; // Rounded corners for the thumb
+                border: 2px solid rgba(0, 0, 0, 0); // Hide the border initially
+              }
+
+              &:hover {
+                &::-webkit-scrollbar-thumb {
+                  background-color: rgba(128, 128, 128, 0.6); // Show scrollbar thumb on hover
+                  border-color: rgba(0, 0, 0, 0.2); // Show border on hover
+                }
+              }
+
+              border-radius: 5px;
+              border: $border;
+
+              .filter-users {
+                padding: 10px;
+                border: none;
+                border-bottom: $border;
+                outline: none;
+                background: transparent;
+                color: white;
+              }
+
+              .users-list {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                .user-container {
+                  position: relative;
+                  border-top: $border;
+
+                  cursor: pointer;
+
+                  .user {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding:5px;
+
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                      background-color: rgb(255, 255, 255, 0.3);
+                    }
+
+                    .profile-picture {
+                      width: 30px;
+                      height: 30px;
+                      margin: 3px;
+                      
+                      border-radius: 50%;
+                      box-shadow: 7px 10px 10px -6px rgba(0, 0, 0, 0.72);
+                    }
+
+                    .username {
+                      margin: 5px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;
+                    }
+                    
+                    .role-picture {
+                      width: 5px;
+                      height: 5px;
+                      margin: 5px;
+                    }
+                  }
+                }
+              }
+            }
+
+            .user-actions {
+              background: rgba(0, 0, 0, 0.72);
+              position: relative;
+              top: -29%;
+              left: 102%;
+              width: 160px;
+              border-radius: 5px;
+              border: $border;
+              text-align: center;
+              word-wrap: break-word;
+              font-family: "dune", Arial, sans-serif;
+              font-size: 8pt;
+              padding: 10px;
+              flex-direction: column;
+              justify-content: space-evenly;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+
+              h4 {
+                padding: 10px;
+                font-size: 12pt;
+                margin: 0px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+
+              .kick:hover,
+              .ban:hover,
+              .mute:hover,
+              .promote:hover,
+              .unban:hover,
+              .unmute:hover,
+              .demote:hover,
+              .dm:hover,
+              .invite-to-chat:hover,
+              .invite-to-play:hover,
+              .invite-to-channel:hover {
+                background-color: $hover-color;
+              }
+
+              .ban,
+              .unban,
+              .kick,
+              .mute,
+              .unmute,
+              .promote,
+              .demote,
+              .dm,
+              .invite-to-chat,
+              .invite-to-play,
+              .invite-to-channel,
+              .unblock-user,
+              .block-user {
+                cursor: pointer;
+                padding: 8px;
+                font-size: 8pt;
+                border: $border;
+                border-radius: 5px;
+                color: white;
+                text-overflow: ellipsis;
+
+                &:hover {
+                  background-color: rgba(255, 255, 255, 0.3);
+                }
+              }
+
+
+              .block-user {
+                background-color: rgba(255, 0, 0, 0.2);
+                &:hover {
+                  background-color: rgba(255, 0, 0, 0.5);
+                }
+              }
+              .unblock-user {
+                background-color: rgba(0, 255, 0, 0.2);
+                &:hover {
+                  background-color: rgba(0, 255, 0, 0.5);
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+      .users-list-banned {
+        position: absolute;
+        top: 100%;
+
+        background: rgba(0, 0, 0, 0.72);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        overflow-y: scroll;
+        // Style the scrollbar
+        scrollbar-color: transparent rgba(128, 128, 128, 0.2); // Transparent thumb, gray background
+
+        &:hover {
+          scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.2); // Show scrollbar thumb and border on hover
+        }
+
+        &::-webkit-scrollbar {
+          width: 10px; // Adjust the width as needed
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: rgba(128, 128, 128, 0.2); // Gray transparent background
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(128, 128, 128, 0.3); // Transparent scrollbar thumb
+          border-radius: 5px; // Rounded corners for the thumb
+          border: 2px solid rgba(0, 0, 0, 0); // Hide the border initially
+        }
+
+        &:hover {
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(128, 128, 128, 0.6); // Show scrollbar thumb on hover
+            border-color: rgba(0, 0, 0, 0.2); // Show border on hover
+          }
+        }
+
+        border-radius: 5px;
+        border: $border;
+
+        h3 {
+          font-size: 14pt;
+          padding: 10px;
+          margin: 0px;
+          color: black;
+        }
+
+        .users-list {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+          overflow-x: hidden;
+
+          .user-container {
+            position: relative;
+            border-top: $border;
+
+            cursor: pointer;
+
+            .user {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: center;
+
+              transition: background-color 0.3s;
+
+              &:hover {
+                background-color: rgb(255, 255, 255, 0.3);
+              }
+
+              .profile-picture {
+                width: 30%;
+                height: auto;
+                margin: 5px 0px 5px 5px;
+
+                border-radius: 50%;
+                box-shadow: 7px 10px 10px -6px rgba(0, 0, 0, 0.72);
+              }
+
+              .username {
+                margin: 0px 0px 0px 10px;
+              }
+            }
+          }
+        }
+
+        .unban-confirm {
+          position: relative;
+          font-family: "dune", Arial, sans-serif;
+          font-size: 10pt;
+          width: 80%;
+          top: 20%;
+          left: 10%;
+
+          background-color: rgba(0, 0, 0, 0.72);
+          border: $border;
+          border-radius: 5px;
+          z-index: 10;
+
+          text-align: center;
+
+          h3 {
+            color: $font-color;
+          }
+
+          button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+          }
+
+          .cancel {
+            border: $border;
+            background-color: rgba(255, 0, 0, 0.2);
+
+            &:hover {
+              color: white;
+              background-color: rgba(255, 0, 0, 0.5);
+            }
+          }
+
+          .confirm {
+            color: white;
+            background-color: rgba(0, 255, 0, 0.2);
+            border: $border;
+
+            &:hover {
+              color: white;
+              background-color: rgba(0, 255, 0, 0.5);
+            }
+          }
+        }
+      }
+
+      .manage {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        max-width: 30px;
+        width: 20%;
+
+        .manage-img {
+          height: 50%;
+
+          img {
+            justify-content: center;
+            align-items: center;
+            filter: invert(40%);
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+          }
+        }
+
+        .banned-img {
+          width: auto;
+          height: 50%;
+          filter: invert(100%);
+          cursor: pointer;
+          transition: transform 0.3s;
+          border-radius: 5px;
+          border: white;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        .channel-popup {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-evenly;
+          position: relative;
+          top: 150%;
+          left: -220%;
+          height: 220px;
+          width: 160px;
+          border-radius: 5px;
+          border: $border;
+          cursor: auto;
+          background: rgba(0, 0, 0, 0.7);
+
+          input {
+            width: 85%;
+            height: 30px;
+
+            font-size: 10pt;
+            padding: 3px;
+            border: $border;
+            background: transparent;
+            border-radius: 5px;
+          }
+
+          .confirm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 80%;
+
+            text-align: center;
+            overflow: hidden;
+
+            border: $border;
+            border-radius: 5px;
+            padding: 10px;
+
+            transition: background-color;
+
+            &:hover {
+              background-color: rgba(0, 255, 0, 0.3);
+            }
+
+            button {
+              font-family: "dune", Arial, sans-serif;
+              font-size: 10pt;
+              color: $font-color;
+              margin: 0;
+              cursor: pointer;
+              transition: transform 0.3s;
+            }
+          }
+
+          .quit-channel {
+            text-align: center;
+            overflow: hidden;
+            width: 80%;
+
+            font-size: 10pt;
+            border: $border;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color;
+
+            &:hover {
+              background-color: rgba(255, 0, 0, 0.5);
+            }
+
+            button {
+              margin: 0px;
+              font-family: "dune", Arial, sans-serif;
+              color: $font-color;
+              transition: transform;
+            }
+          }
+        }
+      }
+    }
+
+    .channel-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      min-width: 30px;
+      width: 20%;
+      padding: 10px;
+      filter: invert(40%);
+
+      img {
+        height: 70%;
+        width: auto;
+
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .messages-container {
+    height: 100%;
+    width: 100%;
+    // min-height: 400px;
+
+    overflow-y: scroll;
+    z-index: 1;
+
+    // Style the scrollbar
+    scrollbar-color: transparent rgba(128, 128, 128, 0.2); // Transparent thumb, gray background
+
+    &:hover {
+      scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.2); // Show scrollbar thumb and border on hover
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px; // Adjust the width as needed
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(128, 128, 128, 0.2); // Gray transparent background
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(128, 128, 128, 0.3); // Transparent scrollbar thumb
+      border-radius: 5px; // Rounded corners for the thumb
+      border: 2px solid rgba(0, 0, 0, 0); // Hide the border initially
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(128, 128, 128, 0.6); // Show scrollbar thumb on hover
+        border-color: rgba(0, 0, 0, 0.2); // Show border on hover
+      }
+    }
+
+    .denied {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: red;
+
+      border: $border;
+      border-radius: 5px;
+
+      text-align: center;
+      text-transform: uppercase;
+      word-wrap: break-word;
+    }
+
+    .message-container {
+      display: flex;
+      flex-direction: column;
+
+      .profile-details {
+
+        width: 80%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin: 5px;
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+  
+        .username {
+          color: white;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin:5px;
+        }
+      }
+
+      .message-self,
+      .message-other {
+        display: inline-block;
+
+        word-wrap: break-word;
+        width: fit-content;
+        max-width: 70%;
+
+        p {
+          color: $font-color;
+          box-shadow: 8px -8px 10px -7px rgba(0, 0, 0, 0.4);
+          border-radius: 8px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          padding: 5px;
+        }
+      }
+
+      .message-self {
+        align-self: flex-end;
+        margin-right: 5px;
+
+        p {
+          color: $font-color;
+          background-color: rgba(0, 69, 0, 0.5);
+        }
+      }
+
+      .message-other {
+        align-self: flex-start;
+        margin-left: 5px;
+
+        p {
+          color: $font-color;
+          background-color: rgba(0, 30, 69, 0.5);
+        }
+      }
+    }
+  }
+}
+
+.chatbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  height: 50px;
+  width: 100%;
+
+  border-bottom-right-radius: 10px;
+
+  z-index: 1;
+
+  .text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+
+    height: 100%;
+    width: 100%;
+
+    .text-input {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+
+      height: 80%;
+      width: 90%;
+
+      border: $border;
+      background: transparent;
+
+      border-radius: 20px;
+      box-shadow: 5px 10px 10px -5px rgba(0, 0, 0, 0.8);
+
+      input {
+        flex: 1;
+        background: transparent;
+
+        height: 100%;
+        width: 100%;
+
+        padding: 10px 15px;
+
+        font-size: 1rem;
+        color: $font-color;
+
+        outline: none;
+      }
+
+      .text-send {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+        width: 8%;
+
+        margin-right: 5px;
+
+        .arrow-img {
+          max-height: 80%;
+          max-width: 100%;
+          filter: invert(70%);
+        }
+      }
+    }
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.accept {
+  background-color: #4caf50;
+  color: white;
+}
+
+.decline {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Hover effect */
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Active click effect */
+.btn:active {
+  transform: scale(1);
+}
